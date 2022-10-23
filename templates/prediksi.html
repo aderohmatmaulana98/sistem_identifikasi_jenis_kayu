@@ -1,0 +1,144 @@
+
+{% include 'header.html' %}
+<div class="container-fluid">
+
+         <!-- Page Heading -->
+         <h1 class="h3 mb-2 text-gray-800">Klasifikasi</h1>
+         
+         <div class="card shadow col-lg py-20 my-2">
+            <div class="text-center mt-2">
+                <h5>KLASIFIKASI</h5>
+            </div>
+             <div class="py-2 px-2 mt-3" align="center"> 
+                <form action="{{url_for('prediksi')}}" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <label for="nilai_k" class="form-label text-left">Masukan NIlai K</label>
+                        <input type="text" class="form-control" style="width: 600px;" id="nilai_k" name="nilai_k">
+                    </div>
+                    <div>
+                        <label for="formFile" class="form-label text-left">Pilih citra kayu</label>
+                        <input class="form-control-file" style="width: 600px;" accept="image/*" type="file" id="imgInp" name="file" >
+                    </div>
+                    
+                    <div class="text-center">
+                        <img src="{{ url_for('static', filename='img/thumbnail.jpg')}}" class="img-fluid img-thumbnail my-2" width="100px" height="100px" style="background: none;" id="blah" alt="Masukan Gambar">
+                    </div> 
+                    <div class="text-center">
+                        <button class="btn btn-primary" type="submit">Prediksi</button>
+                    </div>
+                </form>
+                <div class="text-center">
+                    {%if y_pred==1%}
+                    <h4>
+                        Hasil : Jati
+                    </h4>
+                    {%elif y_pred==2%}
+                    <h4>
+                        Hasil : Mahoni
+                    </h4>
+                    {%else%}
+                    <h4>
+                        Hasil : 
+                    </h4>
+                    {%endif%} 
+                </div>
+             </div>
+         </div>
+
+         <!-- DataTales Example -->
+         <div class="card shadow mb-4">
+           <div class="card-header py-3">
+             <div class="row">
+               <div class="col-lg-8">
+                 <h6 class="m-0 font-weight-bold text-primary">Tabel Hasil Klasifikasi</h6>
+               </div>
+             </div>
+           </div>
+           <div class="card-body">
+             <div class="table-responsive">
+               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                 <thead>
+                   <tr>
+                     <th>File</th>
+                     <th>Energy 0</th>
+                     <th>Homogenity 0</th>
+                     <th>Entropy 0</th>
+                     <th>Contras 0</th>
+                     <th>Energy 45</th>
+                     <th>Homogenity 45</th>
+                     <th>Entropy 45</th>
+                     <th>Contras 45</th>
+                     <th>Energy 90</th>
+                     <th>Homogenity 90</th>
+                     <th>Entropy 90</th>
+                     <th>Contras 90</th>
+                     <th>Energy 135</th>
+                     <th>Homogenity 135</th>
+                     <th>Entropy 135</th>
+                     <th>Contras 135</th>
+                     <th>Label</th>
+                   </tr>
+                 </thead>
+                 
+                 <tbody>
+             {%for pd in prediksi%}
+           <tr>
+             <td>{{pd.1}}</td>
+             <td>{{pd.2}}</td>
+             <td>{{pd.3}}</td>
+             <td>{{pd.4}}</td>
+             <td>{{pd.5}}</td>
+             <td>{{pd.6}}</td>
+             <td>{{pd.7}}</td>
+             <td>{{pd.8}}</td>
+             <td>{{pd.9}}</td>
+             <td>{{pd.10}}</td>
+             <td>{{pd.11}}</td>
+             <td>{{pd.12}}</td>
+             <td>{{pd.13}}</td>
+             <td>{{pd.14}}</td>
+             <td>{{pd.15}}</td>
+             <td>{{pd.16}}</td>
+             <td>{{pd.17}}</td>
+             <td>{{pd.18}}</td>
+             <td>{{pd.19}}</td>
+             {%endfor%}
+           </tr>
+                 </tbody>
+               </table>
+             </div>
+           </div>
+         </div>
+         <div class="card shadow p-3">
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Nilai Jarak</h6>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>File</th>
+                      <th>Label</th>
+                      <th>Jarak</th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+              {%for dl in data%}
+            <tr>
+              <td>{{dl.1}}</td>
+              <td>{{dl.18}}</td>
+              <td>{{dl.19}}</td>
+              {%endfor%}
+            </tr>
+                  </tbody>
+                </table>
+              </div>
+         </div>
+       </div>
+   </div>
+       <!-- /.container-fluid -->
+
+
+
+
+{% include 'footer.html' %}

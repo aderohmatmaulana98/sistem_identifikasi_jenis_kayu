@@ -1,0 +1,86 @@
+{% include 'header.html' %}
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Tabel Hasil Ekstraksi Fitur</h1>
+
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row">
+        <div class="col-lg-8">
+          <h6 class="m-0 font-weight-bold text-primary">Dataset</h6>
+        </div>
+        <div class="col-lg-4 text-right">
+          {% if cek_data > 0  %}
+            <a href="{{url_for('ekstraksi_fitur')}}" class="btn btn-primary disabled">Ekstraksi</a>
+          {% else  %}
+            <a href="{{url_for('ekstraksi_fitur')}}" class="btn btn-primary">Ekstraksi</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Energy 0</th>
+              <th>Homogenity 0</th>
+              <th>Entropy 0</th>
+              <th>Contras 0</th>
+              <th>Energy 45</th>
+              <th>Homogenity 45</th>
+              <th>Entropy 45</th>
+              <th>Contras 45</th>
+              <th>Energy 90</th>
+              <th>Homogenity 90</th>
+              <th>Entropy 90</th>
+              <th>Contras 90</th>
+              <th>Energy 135</th>
+              <th>Homogenity 135</th>
+              <th>Entropy 135</th>
+              <th>Contras 135</th>
+              <th>Label</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {%for ef in data%}
+            <tr>
+              <td>{{ef.1}}</td>
+              <td>{{ef.2}}</td>
+              <td>{{ef.3}}</td>
+              <td>{{ef.4}}</td>
+              <td>{{ef.5}}</td>
+              <td>{{ef.6}}</td>
+              <td>{{ef.7}}</td>
+              <td>{{ef.8}}</td>
+              <td>{{ef.9}}</td>
+              <td>{{ef.10}}</td>
+              <td>{{ef.11}}</td>
+              <td>{{ef.12}}</td>
+              <td>{{ef.13}}</td>
+              <td>{{ef.14}}</td>
+              <td>{{ef.15}}</td>
+              <td>{{ef.16}}</td>
+              <td>{{ef.17}}</td>
+              <td>{{ef.18}}</td>
+              {%endfor%}
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- /.container-fluid -->
+
+
+
+
+{% include 'footer.html' %}
